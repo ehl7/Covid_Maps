@@ -2,11 +2,11 @@ mapboxgl.accessToken =
 'pk.eyJ1IjoiZWhsNyIsImEiOiJjbG9vdHd5c3gwMWttMmpuMGp4ZWxlamUzIn0.wYyVzZnzVph_EMghQUhLWQ';
 let map = new mapboxgl.Map({
 container: 'map', // container ID
-projection: 'albers',   
-style: 'mapbox://styles/mapbox/light-v10',
+projection: 'albers',
+style: 'mapbox://styles/mapbox/dark-v10',
 zoom: 4.2, // starting zoom
 minZoom: 4, // minimum zoom level of the map
-center: [-98, 39.5] // starting center 
+center: [-98, 39.5] // starting center
 });
 
 map.on('load', () => {
@@ -15,8 +15,8 @@ map.on('load', () => {
         data: 'assets/covid_counts.geojson'
     });
 
-    const cases = [0, 1000, 5000, 10000, 20000, 50000, 100000, 300000], 
-    //colors = ['rgb(208,209,230)', 'rgb(103,169,207)', 'rgb(1,108,89)'], 
+    const cases = [0, 1000, 5000, 10000, 20000, 50000, 100000, 300000],
+    colors = ['#fcfbfd', '#efedf5', '#dadaeb', '#bcbddc', '#9e9ac8', '#807dba', '#6a51a3', '#4a1486'],
     radii = [2, 5, 10, 15, 20, 30, 40, 50];
 
     map.addLayer({
@@ -38,10 +38,31 @@ map.on('load', () => {
                     [cases[7], radii[7]]
                 ]
             },
-            'circle-stroke-color': 'white',
+            // change the color of the circle as mag value increases
+            'circle-color': {
+                'property': 'cases',
+                'stops': [
+                    [cases[0], colors[0]],
+                    [cases[1], colors[1]],
+                    [cases[2], colors[2]],
+                    [cases[3], colors[3]],
+                    [cases[4], colors[4]],
+                    [cases[5], colors[5]],
+                    [cases[6], colors[6]],
+                    [cases[7], colors[7]]
+                ]
+            },
+            'circle-stroke-color': '#4a1486',
             'circle-stroke-width': 1,
-            'circle-opacity': 0.6
+            'circle-opacity': 0.8
         }
+    });
+
+    map.on('click', 'count-points', (e) => {
+        new mapboxgl.Popup()
+            .setLngLat(e.features[0].geometry.coordinates)
+            .setHTML(`<strong>${e.features[0].properties.county}, ${e.features[0].properties.state}</strong><br><Strong>Cases:</strong> ${e.features[0].properties.cases}`)
+            .addTo(map);
     });
 
 });
