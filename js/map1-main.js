@@ -51,7 +51,7 @@ async function geojsonFetch() {
         map.on('click', 'countyRates-layer', (e) => {
             new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(`<strong>${e.features[0].properties.county}, ${e.features[0].properties.state}</strong><br><Strong>Rate:</strong> ${e.features[0].properties.rates}`)
+            .setHTML(`<strong>${e.features[0].properties.county} County, ${e.features[0].properties.state}</strong><br><Strong>Rate:</strong> ${e.features[0].properties.rates}`)
             .addTo(map);
         });
 
@@ -76,7 +76,7 @@ async function geojsonFetch() {
         ];
 
         legend = document.getElementById('legend');
-        legend.innerHTML = "<b>2020 Covid-19 Infection Rate<br>(per 1000 people)</b><br><br>";
+        legend.innerHTML = "<b>2020 Covid-19 Infection Rate<br>(cases per 1000 residents)</b><br><br>";
 
         layers.forEach((layer, i) => {
             const color = colors[i];
