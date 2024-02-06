@@ -4,9 +4,9 @@ let map = new mapboxgl.Map({
 container: 'map', // container ID
 projection: 'albers',   
 style: 'mapbox://styles/mapbox/light-v10',
-zoom: 4.2, // starting zoom
-minZoom: 4, // minimum zoom level of the map
-center: [-98, 39.5] // starting center 
+zoom: 3.3, // starting zoom
+minZoom: 3.3, // minimum zoom level of the map
+center: [-103, 39] // starting center 
 });
 
 async function geojsonFetch() { 
