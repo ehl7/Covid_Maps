@@ -35,7 +35,7 @@ body {
 #legend {
     position: absolute;
     bottom: 0;
-    left: 20px;
+    right: 0;
     width: 175px;
     background: #fff;
     margin-right: 20px;
@@ -72,7 +72,7 @@ body {
 #source {
     position: absolute;
     bottom: 0;
-    right: 0;
+    left: 20px;
     background: #fff;
     margin-right: 20px;
     margin-bottom: 40px;
@@ -109,6 +109,6 @@ body {
 /* the label for the dot */
 .dot-label {
     position: absolute;
-    
+
     font-style: italic;
 }

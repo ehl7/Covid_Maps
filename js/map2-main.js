@@ -4,9 +4,9 @@ let map = new mapboxgl.Map({
 container: 'map', // container ID
 projection: 'albers',
 style: 'mapbox://styles/mapbox/dark-v10',
-zoom: 4.2, // starting zoom
-minZoom: 4, // minimum zoom level of the map
-center: [-98, 39.5] // starting center
+zoom: 3.2, // starting zoom
+minZoom: 3, // minimum zoom level of the map
+center: [-98, 37] // starting center
 });
 
 const cases = [1000, 5000, 10000, 50000, 100000, 300000],
@@ -71,7 +71,7 @@ var labels = ['<strong>Number of Cases</strong>'],
 //iterate through cases and create a scaled circle and label for each
 for (var i = 0; i < cases.length; i++) {
     vbreak = cases[i];
-    // you need to manually adjust the radius of each dot on the legend 
+    // you need to manually adjust the radius of each dot on the legend
     // in order to make sure the legend can be properly referred to the dot on the map.
     dot_radii = 2 * radii[i];
     labels.push(
